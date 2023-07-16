@@ -42,7 +42,8 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
       maxAge: 50, // Retains last 25 states
       logOnly: true, // Restrict extension to log-only mode
     }),
-    EffectsModule.forRoot([LoginEffect]),
+    EffectsModule.forRoot([LoginEffect, ]),
+    StoreModule.forRoot({}, {}),
   ],
   providers: [],
   bootstrap: [AppComponent],
