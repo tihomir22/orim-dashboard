@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,7 @@ import { reducers } from './store/reduces';
 import { LoginEffect } from './store/user.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [AppComponent],
@@ -38,12 +39,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
         strictActionSerializability: false,
       },
     }),
-    StoreDevtoolsModule.instrument({
-      maxAge: 50, // Retains last 25 states
-      logOnly: true, // Restrict extension to log-only mode
-    }),
-    EffectsModule.forRoot([LoginEffect, ]),
-    StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot([LoginEffect]),
+    NgbModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [],
   bootstrap: [AppComponent],

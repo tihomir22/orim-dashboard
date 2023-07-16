@@ -5,7 +5,7 @@ import { SuccessMessageLoginComponent } from './success-message-login/success-me
 
 const routes: Routes = [
   {
-    path: 'autologin',
+    path: 'autologin/:frameworkId',
     component: AutologinComponent,
   },
   {

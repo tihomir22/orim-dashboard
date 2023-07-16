@@ -12,4 +12,8 @@ export class SuccessMessageLoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public closeLoginAndReturnToUnity():void{
+
+  }
+
 }

@@ -14,4 +14,11 @@ export class UserService {
   public syncUser(user: UserAuth0): Observable<UserDb> {
     return this.http.post<UserDb>(HOST_BACKEND + 'syncUser', user);
   }
+
+  public closeLoginFramework(frameworkId: string, userSub: string) {
+    return this.http.post<void>(
+      HOST_BACKEND + 'login/closeLoginFramework/' + frameworkId,
+      { userSub }
+    );
+  }
 }
