@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+@import "variables.scss";
+@import "ngx-toastr/toastr";
 
 /* Importing Bootstrap SCSS file. */
 html,
@@ -10,5 +13,27 @@ body {
   height: 100vh;
 }
 
-/* Importing Bootstrap SCSS file. */
+.title {
+  font-size: 30px;
+}
+
+.subtitle {
+  font-size: 15px;
+}
+
+
+@import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "@fortawesome/fontawesome-free/scss/solid.scss";
+@import "@fortawesome/fontawesome-free/scss/regular.scss";
+@import "@fortawesome/fontawesome-free/scss/brands.scss";
+
+@import "mdb-angular-ui-kit/assets/scss/mdb.scss";
 @import "bootstrap/scss/bootstrap";
+.toast-info {
+  .toast-title {
+    color: $fontcolor;
+  }
+  .toast-message {
+    color: $fontcolor;
+  }
+}

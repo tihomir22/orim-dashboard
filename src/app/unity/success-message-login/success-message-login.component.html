@@ -1,4 +1,25 @@
-<p>success-message-login works!</p>
-<button type="button" name="" id="" class="btn btn-primary btn-lg btn-block">
-  Close
-</button>
+<div
+  class="container-flex bg-secondary h-100 w-100 d-flex justify-content-center"
+  data-aos="fade-up"
+>
+  <button
+    type="button"
+    name=""
+    id=""
+    class="btn btn-primary btn-lg btn-block"
+    (click)="closeLoginAndReturnToUnity()"
+  >
+    <div data-aos="fade-in" data-aos-delay="500">
+      <img
+        [src]="(auth.user$ | async)?.picture"
+        alt=""
+        width="32"
+        height="32"
+        class="rounded-circle me-2"
+      />
+      <strong>{{ (auth.user$ | async)?.nickname }}</strong>
+    </div>
+    <p class="title">Your loging was successful!</p>
+    <span class="subtitle">Now you can go back to the back (click here)</span>
+  </button>
+</div>

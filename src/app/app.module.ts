@@ -11,7 +11,10 @@ import { LoginEffect } from './store/user.effect';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import Aos from 'aos';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -42,8 +45,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EffectsModule.forRoot([LoginEffect]),
     NgbModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+  constructor() {
+    Aos.init(); // Inicializa AOS
+  }
+}

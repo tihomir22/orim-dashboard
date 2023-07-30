@@ -31,30 +31,6 @@
             Dashboard
           </a>
         </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#table"></use>
-            </svg>
-            Orders
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#grid"></use>
-            </svg>
-            Products
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <svg class="bi me-2" width="16" height="16">
-              <use xlink:href="#people-circle"></use>
-            </svg>
-            Customers
-          </a>
-        </li>
       </ul>
       <div class="dropdown h-100 d-flex align-items-end">
         <ng-container *ngIf="isLoggedIn$ | async; else notLogged">
@@ -109,7 +85,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
+          <li class="nav-item active text-primary">
             <a class="nav-link" href="#!"
               >Home <span class="sr-only">(current)</span></a
             >
