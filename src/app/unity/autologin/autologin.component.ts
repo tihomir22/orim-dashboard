@@ -26,7 +26,6 @@ export class AutologinComponent implements OnInit {
       this.store.dispatch(
         setAuthLoggedUser({
           auth0User: data as User,
-          isUnityModule: true,
           frameworkId: frameworkId ?? '',
         })
       );
@@ -34,9 +33,15 @@ export class AutologinComponent implements OnInit {
   }
 
   public async tryToLogin() {
+    const frameworkId = this.route.snapshot.paramMap.get('frameworkId');
     const isLoggedIn = await firstValueFrom(this.auth.isAuthenticated$);
     if (!isLoggedIn) {
-      this.auth.loginWithPopup();
+      this.auth.loginWithRedirect({
+        appState: {
+          unity: true,
+          frameworkId,
+        },
+      });
     }
   }
 }

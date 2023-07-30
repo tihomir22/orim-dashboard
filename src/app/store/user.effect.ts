@@ -9,6 +9,7 @@ import { of } from 'rxjs';
 import { UserService } from './user.service';
 import { PossibleAuthRoles } from '../enums/user/user.enum';
 import { UserDb } from '../models/user/user.model';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Injectable()
 export class LoginEffect {
@@ -16,7 +17,8 @@ export class LoginEffect {
     private actions$: Actions,
     private user: UserService,
     private store: Store<AppState>,
-    private router: Router
+    private router: Router,
+    private auth: AuthService
   ) {}
 
   login$ = createEffect(
@@ -35,7 +37,6 @@ export class LoginEffect {
           this.store.dispatch(
             setLoggedUserDB({
               dbUser: syncedUser as UserDb,
-              isUnityModule: (action as any).isUnityModule,
               frameworkId: (action as any).frameworkId,
             })
           );
@@ -49,19 +50,33 @@ export class LoginEffect {
       this.actions$.pipe(
         ofType(setLoggedUserDB),
         switchMap((action) => {
-          if (action.isUnityModule) {
+          return this.auth.appState$.pipe(map((entry) => [entry, action]));
+        }),
+        switchMap((incomingParams) => {
+          let [auth0State, action] = incomingParams;
+          let actionParsed = action as any;
+          let auth0StateParsed = auth0State as {
+            unity: boolean;
+            frameworkId: string;
+          };
+          if (auth0StateParsed.unity) {
             this.user
-              .closeLoginFramework(action.frameworkId ?? '', action.dbUser.sub)
+              .closeLoginFramework(
+                auth0StateParsed.frameworkId ?? '',
+                actionParsed.dbUser.sub
+              )
               .subscribe(() =>
                 this.router.navigate(['/unity/success-message-login'])
               );
           } else {
-            switch (action.dbUser.role_code as PossibleAuthRoles) {
+            switch (actionParsed.dbUser.role_code as PossibleAuthRoles) {
               case PossibleAuthRoles.PLAYER:
+                console.log('Redirecting to player');
                 this.router.navigate(['/']);
                 break;
 
               case PossibleAuthRoles.ADMIN:
+                console.log('Redirecting to admin');
                 this.router.navigate(['/admin']);
                 break;
 

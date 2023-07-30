@@ -1,5 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
-import { setAuthLoggedUser, setLoggedUserDB } from './user.actions';
+import {
+  setAuthLoggedUser,
+  setLoggedUserDB,
+} from './user.actions';
 
 export const initialUser = null;
 

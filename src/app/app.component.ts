@@ -11,5 +11,7 @@ import { firstValueFrom } from 'rxjs';
 export class AppComponent {
   title = 'orim-dashboard';
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {
+    this.auth.appState$.subscribe((data) => console.log(data));
+  }
 }
