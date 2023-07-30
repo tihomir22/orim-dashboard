@@ -1,1 +1,6 @@
-<p>autologin works!</p>
+<ng-container *ngIf="isLoggedInLocal; else elseTemplate">
+  This account is already logged in. Redirecting...
+</ng-container>
+<ng-template #elseTemplate>
+  <p>Please wait...</p>
+</ng-template>

@@ -12,6 +12,7 @@ import { setAuthLoggedUser } from 'src/app/store/user.actions';
   styleUrls: ['./autologin.component.scss'],
 })
 export class AutologinComponent implements OnInit {
+  public isLoggedInLocal = false;
   constructor(
     private auth: AuthService,
     private router: Router,
@@ -34,14 +35,16 @@ export class AutologinComponent implements OnInit {
 
   public async tryToLogin() {
     const frameworkId = this.route.snapshot.paramMap.get('frameworkId');
-    const isLoggedIn = await firstValueFrom(this.auth.isAuthenticated$);
-    if (!isLoggedIn) {
+    this.isLoggedInLocal = await firstValueFrom(this.auth.isAuthenticated$);
+    if (!this.isLoggedInLocal) {
       this.auth.loginWithRedirect({
         appState: {
           unity: true,
           frameworkId,
         },
       });
+    } else {
+      this.router.navigate(['/']);
     }
   }
 }
