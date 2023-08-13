@@ -21,13 +21,16 @@ body {
   font-size: 15px;
 }
 
+* {
+  color: $fontcolor;
+  font-family: "Roboto", sans-serif;
+}
 
 @import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "@fortawesome/fontawesome-free/scss/solid.scss";
 @import "@fortawesome/fontawesome-free/scss/regular.scss";
 @import "@fortawesome/fontawesome-free/scss/brands.scss";
 
-@import "mdb-angular-ui-kit/assets/scss/mdb.scss";
 @import "bootstrap/scss/bootstrap";
 .toast-info {
   .toast-title {
@@ -35,5 +38,17 @@ body {
   }
   .toast-message {
     color: $fontcolor;
+  }
+}
+
+.list-group-item > i {
+  padding: 10px;
+}
+
+.list-group-item-action {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: lighten($color: $primary, $amount: 5);
   }
 }

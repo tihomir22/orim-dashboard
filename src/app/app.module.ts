@@ -13,7 +13,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import Aos from 'aos';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [AppComponent],
@@ -47,6 +47,7 @@ import { ToastrModule } from 'ngx-toastr';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
+    NgxBootstrapIconsModule.pick(allIcons),
   ],
   providers: [],
   bootstrap: [AppComponent],
