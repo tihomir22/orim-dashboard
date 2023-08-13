@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import Aos from 'aos';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -48,9 +49,12 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot(), // ToastrModule added
     NgxBootstrapIconsModule.pick(allIcons),
+    NgxSpinnerModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
 })
 export class AppModule {
   constructor() {
