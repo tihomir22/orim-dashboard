@@ -41,11 +41,9 @@ body {
   }
 }
 
-.list-group-item > i {
-  padding: 10px;
-}
-
-.list-group-item-action {
+.list-group-item {
+  display: flex;
+  justify-content: center;
   cursor: pointer;
   transition: background-color 0.3s ease;
   &:hover {

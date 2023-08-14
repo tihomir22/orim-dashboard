@@ -5,6 +5,7 @@ import { Store } from '@ngrx/store';
 import { filter, firstValueFrom } from 'rxjs';
 import { AppState } from 'src/app/store/model';
 import { setAuthLoggedUser } from 'src/app/store/user.actions';
+import { UserService } from 'src/app/store/user.service';
 
 @Component({
   selector: 'app-autologin',
@@ -17,7 +18,8 @@ export class AutologinComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private store: Store<AppState>,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -44,7 +46,12 @@ export class AutologinComponent implements OnInit {
         },
       });
     } else {
-      this.router.navigate(['/']);
+      const user = await firstValueFrom(this.auth.user$);
+      this.userService
+        .closeLoginFramework(frameworkId ?? '', user?.sub ?? '')
+        .subscribe(() =>
+          this.router.navigate(['/unity/success-message-login'])
+        );
     }
   }
 }
