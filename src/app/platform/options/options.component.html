@@ -10,9 +10,6 @@
     <button
       type="button"
       class="btn btn-danger btn-lg btn-block col-12 col-md-2"
-      [disabled]="
-        !(authService.isAuthenticated$ | async) && (!unityId || unityId == '')
-      "
       (click)="deleteAccountData()"
     >
       Delete account data

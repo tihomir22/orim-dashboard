@@ -24,7 +24,7 @@ export class OptionsComponent {
   constructor() {}
   ngOnInit(): void {}
 
-  public deleteAccountData() {
+  public async deleteAccountData() {
     const modalRef = this.modalService.open(DialogComponent);
     (modalRef.componentInstance as DialogComponent).title.set('Confirmation');
     (modalRef.componentInstance as DialogComponent).description.set(
@@ -35,6 +35,11 @@ export class OptionsComponent {
       'Input your email'
     );
     (modalRef.componentInstance as DialogComponent).type.set(TYPE_DIALOG.INPUT);
+    const user = await firstValueFrom(this.authService.user$);
+    if (user) {
+      (modalRef.componentInstance as DialogComponent).valueInput =
+        user.email ?? '';
+    }
     modalRef.result.then(async (res: Array<string>) => {
       const [email] = res;
       if (esEmail(email)) {
