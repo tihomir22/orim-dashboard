@@ -1,0 +1,21 @@
+<div class="wrapper container py-3">
+  <h2>Danger zone</h2>
+  <div class="delete-account row py-2">
+    <span class="col-12 py-2 text-light">
+      By clicking the "Delete Account" button, you are confirming the permanent
+      deletion of your account and all associated data in compliance with
+      privacy laws. This action cannot be undone. Please ensure you have backed
+      up any important information before proceeding.
+    </span>
+    <button
+      type="button"
+      class="btn btn-danger btn-lg btn-block col-12 col-md-2"
+      [disabled]="
+        !(authService.isAuthenticated$ | async) && (!unityId || unityId == '')
+      "
+      (click)="deleteAccountData()"
+    >
+      Delete account data
+    </button>
+  </div>
+</div>

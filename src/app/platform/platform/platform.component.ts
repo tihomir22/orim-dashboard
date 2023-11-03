@@ -43,4 +43,8 @@ export class PlatformComponent implements OnInit {
   public logout() {
     this.auth.logout();
   }
+
+  public navigateToOptions() {
+    this.router.navigate(['/options']);
+  }
 }

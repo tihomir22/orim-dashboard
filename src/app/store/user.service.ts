@@ -21,4 +21,16 @@ export class UserService {
       { userSub }
     );
   }
+
+  public getLoginFrameworkFromSub(sub: string) {
+    return this.http.get(HOST_BACKEND + 'login/getUnityId/' + sub);
+  }
+
+  public generateLink(email: string) {
+    return this.http.post(HOST_BACKEND + 'generateLink', { email });
+  }
+
+  public executeLink(linkId: string) {
+    return this.http.post(HOST_BACKEND + 'executeLink/' + linkId, {});
+  }
 }

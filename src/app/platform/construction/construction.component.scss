@@ -1,0 +1,14 @@
+.wrapper-middle {
+  position: relative;
+  .middle-image {
+    border-radius: 20px;
+    filter: blur(
+      5px
+    ); // Ajusta el valor en "px" según el nivel de desenfoque que desees
+  }
+  .informative-message {
+    text-align: center;
+    position: absolute;
+    width: 100%;top: 50%;
+  }
+}
