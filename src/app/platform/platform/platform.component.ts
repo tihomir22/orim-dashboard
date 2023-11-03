@@ -17,11 +17,13 @@ export class PlatformComponent implements OnInit {
   public user!: User;
   constructor(
     private auth: AuthService,
-    private router: Router,
+    public router: Router,
     private http: HttpClient,
     private store: Store<AppState>,
     private spinner: NgxSpinnerService
-  ) {}
+  ) {
+    console.log(this.router.url)
+  }
 
   ngOnInit(): void {
     this.spinner.show();
