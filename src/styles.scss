@@ -30,6 +30,9 @@ h2 {
 span {
   color: $primary;
 }
+.big-font {
+  font-size: 60px;
+}
 
 @import "@fortawesome/fontawesome-free/scss/fontawesome.scss";
 @import "@fortawesome/fontawesome-free/scss/solid.scss";
@@ -37,7 +40,6 @@ span {
 @import "@fortawesome/fontawesome-free/scss/brands.scss";
 
 @import "bootstrap/scss/bootstrap";
-
 
 .list-group-item {
   display: flex;
@@ -47,4 +49,16 @@ span {
   &:hover {
     background-color: lighten($color: $primary, $amount: 5);
   }
+}
+
+app-referal {
+  height: 100%;
+  width: 100%;
+}
+.card {
+  padding: 20px;
+  gap: 5px;
+}
+.pointer {
+  cursor: pointer;
 }

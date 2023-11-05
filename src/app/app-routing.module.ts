@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'DELETE_DATA/:id',
     component: LinkerComponent,
   },
+  {
+    path: 'REFERRAL_CODE/:id',
+    component: LinkerComponent,
+  },
 ];
 
 @NgModule({

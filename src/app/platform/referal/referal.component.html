@@ -1,0 +1,72 @@
+<div class="wrapper-referral">
+  <div class="explanation d-flex justify-content-center">
+    <div class="card">
+      <h4>How does it work?</h4>
+      <p>
+        For each referral you get, you will earn 1% bonus in all rewards
+        forever!
+      </p>
+    </div>
+  </div>
+  <div class="gauge">
+    <div class="card">
+      <h4>Total bonus</h4>
+      <h2 class="big-font">{{ totalBonus | async }}%</h2>
+    </div>
+  </div>
+  <div class="stats-referral">
+    <div class="row">
+      <div class="col-6">
+        <div class="card w-100">
+          <h4>Invited people</h4>
+          <h2>{{ amountRefered$ | async }}</h2>
+        </div>
+        <div class="card w-100">
+          <h4>Bonus by refering</h4>
+          <h2>{{ amountRefered$ | async }}%</h2>
+        </div>
+        <div class="card w-100">
+          <h4>Got recluted?</h4>
+          <h2>{{ (isRecluted$ | async) ? "Yes +1% bonus" : "No" }}</h2>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="card w-100">
+          <h4>Unique code</h4>
+          <p class="mb-0">Use this code to invite friends.</p>
+          <span *ngIf="ownReferralCode()" class="bg-secondary py-2 rounded">
+            {{ ownReferralCode() }}
+            <i class="fa fa-copy pointer" (click)="copyReferal()"></i>
+          </span>
+          <button
+            type="button"
+            *ngIf="!ownReferralCode()"
+            class="btn btn-primary btn-lg btn-block"
+            (click)="generateCode()"
+          >
+            Generate code
+          </button>
+        </div>
+        <div class="card w-100 h-100 justify-content-between">
+          <h4>Introduce an email to send an invitation</h4>
+          <div class="form-group" [formGroup]="formGroup">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              formControlName="sendEmail"
+            />
+          </div>
+          <button
+            type="button"
+            [disabled]="!formGroup.get('sendEmail')?.valid"
+            class="btn btn-primary btn-lg btn-block"
+            (click)="sendMailTo()"
+          >
+            Send invitation link
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

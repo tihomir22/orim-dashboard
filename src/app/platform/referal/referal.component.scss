@@ -1,0 +1,15 @@
+.wrapper-referral {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 20px;
+}
+* {
+  text-align: center;
+}
+
+[class^="col-"] {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

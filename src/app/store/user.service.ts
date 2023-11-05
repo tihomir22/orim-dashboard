@@ -26,11 +26,32 @@ export class UserService {
     return this.http.get(HOST_BACKEND + 'login/getUnityId/' + sub);
   }
 
-  public generateLink(email: string) {
-    return this.http.post(HOST_BACKEND + 'generateLink', { email });
+  public generateLink(email: string, type = 'DELETE_DATA', creator?: string) {
+    return this.http.post(HOST_BACKEND + 'generateLink', {
+      email,
+      type,
+      sub: creator,
+    });
   }
 
-  public executeLink(linkId: string) {
-    return this.http.post(HOST_BACKEND + 'executeLink/' + linkId, {});
+  public executeLink(linkId: string, sub?: string) {
+    return this.http.post(HOST_BACKEND + 'executeLink/' + linkId, { sub });
+  }
+  public generateReferralCode(sub: string) {
+    return this.http.post(HOST_BACKEND + 'generate-referral-code', { sub });
+  }
+  public getReferralCode(sub: string) {
+    return this.http.post(HOST_BACKEND + 'get-referral-code', { sub });
+  }
+
+  public getAmountRefered(sub: string): Observable<{ amount: number }> {
+    return this.http.post(HOST_BACKEND + 'get-amount-referred-people', {
+      sub,
+    }) as any;
+  }
+  public isRecluted(sub: string): Observable<{ gotRecluted: boolean }> {
+    return this.http.post(HOST_BACKEND + 'got-recluted', {
+      sub,
+    }) as any;
   }
 }

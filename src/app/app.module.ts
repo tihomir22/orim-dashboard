@@ -54,7 +54,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
   providers: [],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-
 })
 export class AppModule {
   constructor() {

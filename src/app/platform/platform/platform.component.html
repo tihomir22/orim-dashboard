@@ -30,6 +30,14 @@
         </li>
         <li
           class="list-group-item list-group-item-action d-flex align-items-center"
+          [ngClass]="{ active: router.url == '/referral' }"
+          [routerLink]="['/referral']"
+        >
+          <i class="fa fa-gears"></i
+          ><span class="d-none d-lg-flex text-light">Referral</span>
+        </li>
+        <li
+          class="list-group-item list-group-item-action d-flex align-items-center"
           [ngClass]="{ active: router.url == '/options' }"
           [routerLink]="['/options']"
         >
@@ -79,9 +87,6 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
           <li>
             <a class="dropdown-item" href="#" (click)="logout()">Sign out</a>
-          </li>
-          <li>
-            <a class="dropdown-item" (click)="navigateToOptions()">Options</a>
           </li>
         </ul>
       </div>

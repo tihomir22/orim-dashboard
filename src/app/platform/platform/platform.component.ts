@@ -22,7 +22,6 @@ export class PlatformComponent implements OnInit {
     private store: Store<AppState>,
     private spinner: NgxSpinnerService
   ) {
-    console.log(this.router.url)
   }
 
   ngOnInit(): void {
