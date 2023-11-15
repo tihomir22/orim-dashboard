@@ -1,0 +1,63 @@
+<div class="wrapper">
+  @for (gameProgress of (gameProgresses$ | async); track gameProgress._id) {
+  <div class="row justify-content-center">
+    <mat-card class="col-12 col-sm-6">
+      <mat-card-content>
+        <div class="d-flex w-100 wrapper-card">
+          <img
+            ngSrc="{{ getImgSrcBasedOnGameName(gameProgress.game) }}"
+            width="200"
+            height="200"
+            priority
+          />
+          <div class="right-content w-100">
+            <h3>{{ gameProgress.game }}</h3>
+            <div class="list-progress">
+              @for(rule of gameProgress.rule.conditions;track rule.key;let idx =
+              $index){
+              <div class="progress-bar">
+                <div class="rule-text d-flex">
+                  <span>{{ rule.text }}</span>
+                </div>
+                <div class="bar-level">
+                  <mat-progress-bar
+                    mode="determinate"
+                    value="{{
+                      gameProgress.processed_rule[idx] ? '100' : '40'
+                    }}"
+                  ></mat-progress-bar>
+                  <mat-icon>{{
+                    gameProgress.processed_rule[idx] ? "done" : "schedule"
+                  }}</mat-icon>
+                </div>
+              </div>
+              }
+            </div>
+            <br />
+            <div class="claim-button">
+              <button type="button" class="btn btn-primary btn-lg btn-block">
+                Claim your NFT now!
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  } @empty{
+  <div class="empty justify-content-center align-items-center">
+    <img ngSrc="/assets/void.svg" width="200" height="200" priority />
+    <h2>Oops it's empty</h2>
+    <span class="text-light"
+      >We did not find any progress related to this account.</span
+    >
+    <a
+      href="https://play.google.com/store/apps/dev?id=9205738346587560692"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="btn btn-primary"
+      >Start playing now!</a
+    >
+  </div>
+  }
+</div>

@@ -5,6 +5,7 @@ import { OptionsComponent } from './options/options.component';
 import { ConstructionComponent } from './components/construction/construction.component';
 import { ReferalComponent } from './referal/referal.component';
 import { authGuard } from '../auth.guard';
+import { ProgressComponent } from './progress/progress.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'options',
         component: OptionsComponent,
+      },
+      {
+        path: 'progress',
+        component: ProgressComponent,
       },
     ],
   },

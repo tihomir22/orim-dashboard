@@ -11,4 +11,3 @@ export const setLoggedUserDB = createAction(
   '[user] Set loaded user from DB to Store',
   props<{ dbUser: UserDb; frameworkId?: string }>()
 );
-

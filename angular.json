@@ -85,10 +85,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "orim-dashboard:build:production"
+              "buildTarget": "orim-dashboard:build:production"
             },
             "development": {
-              "browserTarget": "orim-dashboard:build:development"
+              "buildTarget": "orim-dashboard:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -96,7 +96,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "orim-dashboard:build"
+            "buildTarget": "orim-dashboard:build"
           }
         },
         "test": {

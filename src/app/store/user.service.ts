@@ -9,10 +9,15 @@ import { UserDb } from '../models/user/user.model';
   providedIn: 'root',
 })
 export class UserService {
+  public stats: { dynamic_key: string } = undefined as any;
   constructor(private http: HttpClient) {}
 
   public syncUser(user: UserAuth0): Observable<UserDb> {
     return this.http.post<UserDb>(HOST_BACKEND + 'syncUser', user);
+  }
+
+  public getStats(): Observable<{ dynamic_key: string }> {
+    return this.http.get<{ dynamic_key: string }>(HOST_BACKEND + 'stats');
   }
 
   public closeLoginFramework(frameworkId: string, userSub: string) {
@@ -53,5 +58,8 @@ export class UserService {
     return this.http.post(HOST_BACKEND + 'got-recluted', {
       sub,
     }) as any;
+  }
+  public getAchievements(sub: string) {
+    return this.http.get(HOST_BACKEND + 'getAchievements/' + sub);
   }
 }

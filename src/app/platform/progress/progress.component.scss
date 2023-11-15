@@ -1,0 +1,54 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-display {
+  overflow-wrap: anywhere;
+}
+.progress-bar{
+  display: flex;
+  gap: 5px;
+}
+.right-content{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.claim-button{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wrapper-card{
+  display: flex;
+  gap: 30px;
+}
+.list-progress {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  .progress {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 5px;
+    .rule-text{
+     display: flex;
+     justify-content: flex-start;
+    }
+  }
+}
+
+.bar-level{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.wrapper{
+  padding: 40px;
+}
