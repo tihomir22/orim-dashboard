@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
 import { Observable, map, switchMap } from 'rxjs';
 import { UserService } from 'src/app/store/user.service';
+import { getImgSrcBasedOnGameName } from 'src/app/utils';
 export interface Progress {
   _id: string;
   game: string;
@@ -38,9 +39,6 @@ export class ProgressComponent {
   constructor(private userService: UserService, private auth: AuthService) {}
 
   public getImgSrcBasedOnGameName(gameName: string) {
-    if (gameName == 'Crypto Match - Puzzle Game') {
-      return '/assets/cryptomatch.png';
-    }
-    return '';
+    return getImgSrcBasedOnGameName(gameName);
   }
 }

@@ -1,0 +1,49 @@
+<div class="wrapper-withdrawal">
+  <div class="row filters" [formGroup]="formGroup">
+    <div class="col-12 col-sm-5">
+      <mat-form-field class="w-100">
+        <input matInput placeholder="Email" formControlName="email" />
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-5">
+      <mat-form-field class="w-100">
+        <input
+          matInput
+          placeholder="Wallet address"
+          formControlName="walletAddress"
+        />
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-sm-2">
+      <button
+        type="button"
+        class="btn btn-primary btn-lg btn-block w-100"
+        (click)="getWithdraws()"
+      >
+        <i class="fa-solid fa-filter"></i> Apply filter
+      </button>
+    </div>
+  </div>
+
+  @if(withdrawStatues().length == 0){
+  <div class="d-flex not-found" data-aos="fade-in" data-aos-delay="500">
+    <img ngSrc="assets/void.svg" width="200" height="200" priority />
+    <div class="info">
+      <h4 class="text-light">The list is empty</h4>
+      <p>Try changing the filters in order to get more generic results.</p>
+    </div>
+  </div>
+  }@else{
+  <div class="table-responsive">
+    <ag-grid-angular
+      [rowData]="withdrawStatues()"
+      [columnDefs]="colDefs"
+      (gridReady)="onGridReady($event)"
+      class="ag-theme-material"
+      (firstDataRendered)="firstDataRenderedFn()"
+      style="height: 500px"
+    >
+    </ag-grid-angular>
+  </div>
+  }
+</div>

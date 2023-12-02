@@ -15,8 +15,8 @@
     </div>
   </div>
   <div class="stats-referral">
-    <div class="row">
-      <div class="col-6">
+    <div class="row row-gap">
+      <div class="col-12 col-sm-6">
         <div class="card w-100">
           <h4>Invited people</h4>
           <h2>{{ amountRefered$ | async }}</h2>
@@ -30,7 +30,7 @@
           <h2>{{ (isRecluted$ | async) ? "Yes +1% bonus" : "No" }}</h2>
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-sm-6">
         <div class="card w-100">
           <h4>Unique code</h4>
           <p class="mb-0">Use this code to invite friends.</p>

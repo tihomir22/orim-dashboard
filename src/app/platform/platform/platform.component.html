@@ -1,7 +1,43 @@
 <div class="wrapper">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex d-sm-none">
+    <div class="container-fluid text-primary">
+      <div>
+        <span class="fs-4 text-dark">{{ getActiveTitleByPath() }}</span>
+      </div>
+      <button
+        #btnCloneNav
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="list-group flex-grow-1 my-3">
+          @for (route of routesNavigation; track route.path) {
+          <li
+            class="list-group-item d-flex align-items-center"
+            [ngClass]="{ active: router.url == route.path }"
+            [routerLink]="[route.path]"
+            (click)="btnCloneNav.click()"
+          >
+            <i class="{{ route.icon }}"></i>
+
+            <span class="text-light">{{ route.displayText }} </span>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="d-flex h-100">
     <div
-      class="d-flex flex-column flex-shrink-0 p-3 bg-secondary sidebar {{
+      class="d-none d-sm-flex flex-column flex-shrink-0 p-3 bg-secondary sidebar {{
         isSidebarOpened() ? 'collapsed' : ''
       }}"
     >
@@ -21,7 +57,7 @@
           />
         </a>
         @if(!isSidebarOpened()){
-        <span class="fs-4 d-none d-lg-flex">Dashboard</span>
+        <span class="fs-4 d-none d-lg-flex">{{ getActiveTitleByPath() }}</span>
         }
       </div>
       <hr />

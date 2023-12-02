@@ -4,6 +4,7 @@ import { User as UserAuth0 } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
 import { HOST_BACKEND } from '../Coordinator';
 import { UserDb } from '../models/user/user.model';
+import { WithdrawRequest } from '../platform/withdraw-status/withdraw-status.component';
 
 @Injectable({
   providedIn: 'root',
@@ -61,5 +62,19 @@ export class UserService {
   }
   public getAchievements(sub: string) {
     return this.http.get(HOST_BACKEND + 'getAchievements/' + sub);
+  }
+
+  public getWithdrawStatus(email?: string, walletAddress?: string) {
+    return this.http.post(HOST_BACKEND + 'findWithdraws', {
+      email,
+      walletAddress,
+    });
+  }
+
+  public updateWithdraw(withdraw: WithdrawRequest) {
+    return this.http.patch(
+      HOST_BACKEND + 'withdraws' + `/${withdraw._id}`,
+      withdraw
+    );
   }
 }

@@ -24,14 +24,19 @@ export class PlatformComponent implements OnInit {
       icon: 'fa fa-home',
     },
     {
-      path: '/progress',
-      displayText: 'Game progress',
-      icon: 'fa fa-solid fa-bars-progress',
+      path: '/withdraws-status',
+      displayText: 'Withdraw status',
+      icon: 'fa fa-trophy',
     },
+    // {
+    //   path: '/progress',
+    //   displayText: 'Game progress',
+    //   icon: 'fa fa-solid fa-bars-progress',
+    // },
     {
       path: '/referral',
       displayText: 'Referral',
-      icon: 'fa fa-gears',
+      icon: 'fa-solid fa-people-arrows',
     },
     {
       path: '/options',
@@ -59,6 +64,10 @@ export class PlatformComponent implements OnInit {
       /** spinner ends after 5 seconds */
       this.spinner.hide();
     }, 3000);
+  }
+
+  public getActiveTitleByPath() {
+    return this.routesNavigation.find((entry) => entry.path == this.router.url)?.displayText;
   }
 
   public login() {

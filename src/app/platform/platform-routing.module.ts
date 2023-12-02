@@ -6,6 +6,7 @@ import { ConstructionComponent } from './components/construction/construction.co
 import { ReferalComponent } from './referal/referal.component';
 import { authGuard } from '../auth.guard';
 import { ProgressComponent } from './progress/progress.component';
+import { WithdrawStatusComponent } from './withdraw-status/withdraw-status.component';
 
 const routes: Routes = [
   {
@@ -24,10 +25,16 @@ const routes: Routes = [
       {
         path: 'options',
         component: OptionsComponent,
+        canActivate: [authGuard],
       },
+      // {
+      //   path: 'progress',
+      //   component: ProgressComponent,
+      // },
       {
-        path: 'progress',
-        component: ProgressComponent,
+        path: 'withdraws-status',
+        component: WithdrawStatusComponent,
+        canActivate: [authGuard],
       },
     ],
   },

@@ -4,3 +4,12 @@ $light: lighten($secondary, 40%);
 $fontcolor: #727489;
 $bgcolor: #0d0e1b;
 $bgdarker: #07070f;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);

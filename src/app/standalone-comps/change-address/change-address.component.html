@@ -1,0 +1,18 @@
+<form [formGroup]="walletAddressForm" (ngSubmit)="onConfirm()">
+  <div mat-dialog-content>
+    <p>Please enter your new wallet address:</p>
+    <mat-form-field class="w-100">
+      <input matInput formControlName="newAddress" placeholder="New address" />
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      type="button"
+      class="btn btn-primary btn-lg btn-block w-100"
+      [disabled]="walletAddressForm.invalid"
+      (click)="onConfirm()"
+    >
+      Confirm
+    </button>
+  </div>
+</form>

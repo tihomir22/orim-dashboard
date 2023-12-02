@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgOptimizedImage } from '@angular/common';
 import { PlatformRoutingModule } from './platform-routing.module';
 import { PlatformComponent } from './platform/platform.component';
@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { ProgressComponent } from './progress/progress.component';
 import { ParseJsonPipe } from '../standalone-comps/parse-json/parse-json.pipe';
+import { WithdrawStatusComponent } from './withdraw-status/withdraw-status.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { ParseJsonPipe } from '../standalone-comps/parse-json/parse-json.pipe';
     OptionsComponent,
     ReferalComponent,
     ProgressComponent,
+    WithdrawStatusComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,8 @@ import { ParseJsonPipe } from '../standalone-comps/parse-json/parse-json.pipe';
     MaterialModule,
     ParseJsonPipe,
     NgOptimizedImage,
+    AgGridModule,
   ],
+  providers: [DatePipe],
 })
 export class PlatformModule {}

@@ -1,0 +1,29 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
+.wrapper-withdrawal {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  margin: 20px;
+  padding: 20px;
+}
+.filters {
+  justify-content: center;
+  align-items: baseline;
+}
+
+.not-found {
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  @include media-breakpoint-up(sm) {
+    flex-direction: row;
+  }
+}
+
+.status-icon {
+  margin-right: 5px;
+}
