@@ -4,7 +4,10 @@ import { User as UserAuth0 } from '@auth0/auth0-angular';
 import { Observable } from 'rxjs';
 import { HOST_BACKEND } from '../Coordinator';
 import { UserDb } from '../models/user/user.model';
-import { WithdrawRequest } from '../platform/withdraw-status/withdraw-status.component';
+import {
+  Link,
+  WithdrawRequest,
+} from '../platform/withdraw-status/withdraw-status.component';
 
 @Injectable({
   providedIn: 'root',
@@ -43,11 +46,22 @@ export class UserService {
   public executeLink(linkId: string, sub?: string) {
     return this.http.post(HOST_BACKEND + 'executeLink/' + linkId, { sub });
   }
+
+  public getLinkToExecute(linkId: string) {
+    return this.http.get<Link>(HOST_BACKEND + 'getGeneratedLink/' + linkId);
+  }
   public generateReferralCode(sub: string) {
     return this.http.post(HOST_BACKEND + 'generate-referral-code', { sub });
   }
   public getReferralCode(sub: string) {
     return this.http.post(HOST_BACKEND + 'get-referral-code', { sub });
+  }
+
+  public activateReferralCodeManually(sub: string, code: string) {
+    return this.http.post(HOST_BACKEND + 'activate-referral-manually', {
+      sub,
+      code,
+    });
   }
 
   public getAmountRefered(sub: string): Observable<{ amount: number }> {

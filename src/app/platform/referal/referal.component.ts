@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@auth0/auth0-angular';
 import { ToastrService } from 'ngx-toastr';
 import {
+  catchError,
   combineLatest,
   firstValueFrom,
   forkJoin,
@@ -11,6 +12,7 @@ import {
   of,
   subscribeOn,
   switchMap,
+  tap,
 } from 'rxjs';
 import { HOST_BACKEND, HOST_WEBAPP } from 'src/app/Coordinator';
 import { UserService } from 'src/app/store/user.service';
@@ -67,7 +69,28 @@ export class ReferalComponent {
 
     this.formGroup = this.fb.group({
       sendEmail: ['', [Validators.required, Validators.email]],
+      activateCode: ['', [Validators.required]],
     });
+  }
+
+  public async activateCode() {
+    const user = await firstValueFrom(this.auth.user$);
+    const res = await firstValueFrom(
+      this.user
+        .activateReferralCodeManually(
+          user?.sub ?? '',
+          this.formGroup.value.activateCode
+        )
+        .pipe(
+          tap((res) => {
+            this.toast.success('Activated successfully');
+          }),
+          catchError((err) => {
+            this.toast.error(err.error.message);
+            return of(err);
+          })
+        )
+    );
   }
 
   public async generateCode() {
@@ -115,5 +138,9 @@ export class ReferalComponent {
 
     Warm regards,`
     );
+  }
+
+  public obtainFullReferralLink() {
+    return HOST_WEBAPP + 'REFERRAL_CODE/' + this.ownReferralCode();
   }
 }

@@ -44,7 +44,7 @@ export class OptionsComponent {
       const [email] = res;
       if (esEmail(email)) {
         this.toastService.info(
-          'You will recieve an email containing the confirmation link!'
+          'You will receive an email containing the confirmation link!'
         );
         const res = await firstValueFrom(this.userService.generateLink(email));
       } else {

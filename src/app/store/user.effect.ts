@@ -69,20 +69,20 @@ export class LoginEffect {
                 this.router.navigate(['/unity/success-message-login'])
               );
           } else {
-            switch (actionParsed.dbUser.role_code as PossibleAuthRoles) {
-              case PossibleAuthRoles.PLAYER:
-                console.log('Redirecting to player');
-                this.router.navigate(['/']);
-                break;
+            // switch (actionParsed.dbUser.role_code as PossibleAuthRoles) {
+            //   case PossibleAuthRoles.PLAYER:
+            //     console.log('Redirecting to player');
+            //     this.router.navigate(['/']);
+            //     break;
 
-              case PossibleAuthRoles.ADMIN:
-                console.log('Redirecting to admin');
-                this.router.navigate(['/admin']);
-                break;
+            //   case PossibleAuthRoles.ADMIN:
+            //     console.log('Redirecting to admin');
+            //     this.router.navigate(['/admin']);
+            //     break;
 
-              default:
-                return false;
-            }
+            //   default:
+            //     return false;
+            // }
           }
           return of(null) as any;
         }),

@@ -6,9 +6,11 @@
   height: 100%;
   gap: 30px;
   padding: 40px 0px;
+  align-items: center;
 
   .middle-image {
     border-radius: 20px;
+    max-width: 70vh;
     filter: blur(
       5px
     ); // Ajusta el valor en "px" según el nivel de desenfoque que desees

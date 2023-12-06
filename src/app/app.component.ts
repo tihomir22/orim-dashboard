@@ -11,12 +11,25 @@ import { UserService } from './store/user.service';
 export class AppComponent {
   title = 'orim-dashboard';
 
+  private alreadyRedirected = new Set([] as Array<string>);
+
   constructor(
     private auth: AuthService,
     private router: Router,
     private user: UserService
   ) {
-    this.auth.appState$.subscribe((data) => console.log(data));
+    this.auth.appState$.subscribe((data) => {
+      const dataParsed = data as { urlToRedirect: string };
+      if (
+        !!dataParsed.urlToRedirect &&
+        !this.alreadyRedirected.has(dataParsed.urlToRedirect)
+      ) {
+        setTimeout(() => {
+          this.router.navigate([dataParsed.urlToRedirect]);
+          this.alreadyRedirected.add(dataParsed.urlToRedirect);
+        }, 1000);
+      }
+    });
     this.user.getStats().subscribe((data) => (this.user.stats = data));
   }
 }

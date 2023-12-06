@@ -9,7 +9,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
+const appearance: MatFormFieldDefaultOptions = {
+  appearance: 'outline',
+};
 const modules = [
   CommonModule,
   MatSidenavModule,
@@ -27,5 +30,11 @@ const modules = [
   declarations: [],
   imports: modules,
   exports: modules,
+  providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: appearance,
+    },
+  ],
 })
 export class MaterialModule {}

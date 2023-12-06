@@ -33,6 +33,13 @@ export interface WithdrawRequest {
   _id: string;
 }
 
+export interface Link {
+  linkId: string;
+  email: string;
+  type: string;
+  creator: string;
+}
+
 @Component({
   selector: 'app-withdraw-status',
   templateUrl: './withdraw-status.component.html',
