@@ -15,24 +15,24 @@
           <h4>Total bonus</h4>
           <h2>{{ totalBonus | async }}%</h2>
         </div>
-        <div class="card w-100">
+        <div class="card w-100 h-100">
           <h4>Invited people</h4>
           <h2>{{ amountRefered$ | async }}</h2>
         </div>
-        <div class="card w-100">
+        <div class="card w-100 h-100">
           <h4>Bonus by refering</h4>
           <h2>{{ amountRefered$ | async }}%</h2>
         </div>
-        <div class="card w-100">
+        <div class="card w-100 h-100">
           <h4>Got recluted?</h4>
           <h2>{{ (isRecluted$ | async) ? "Yes +1% bonus" : "No" }}</h2>
         </div>
       </div>
       <div class="col-12 col-sm-6">
-        <div class="card w-100">
+        <div class="card w-100 h-100">
           <h4>Unique code</h4>
           <p class="mb-0">Use this code to invite friends.</p>
-          <span *ngIf="ownReferralCode()" class="bg-secondary py-2 rounded">
+          <span *ngIf="ownReferralCode()" class="bg-secondary py-2 rounded referal-code">
             {{ ownReferralCode() }}
             <i class="fa fa-copy pointer" (click)="copyReferal()"></i>
           </span>
@@ -48,39 +48,51 @@
         <div class="card w-100 h-100">
           <h4>Activate code</h4>
           <p class="mb-0">Do you have a code already? Activate it here.</p>
-          <div class="d-flex">
-            <mat-form-field class="flex-grow-1">
-              <input
-                matInput
-                placeholder="Code"
-                formControlName="activateCode"
-              />
-            </mat-form-field>
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="activateCode()"
-              [disabled]="!formGroup.get('activateCode')?.valid"
-            >
-              Activate code
-            </button>
+          <div class="d-flex row">
+            <div class="col-12 col-sm-6 col-lg-9">
+              <mat-form-field class="flex-grow-1">
+                <input
+                  matInput
+                  placeholder="Code"
+                  formControlName="activateCode"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <button
+                type="button"
+                class="btn btn-primary w-100 h-100"
+                (click)="activateCode()"
+                [disabled]="!formGroup.get('activateCode')?.valid"
+              >
+                Activate code
+              </button>
+            </div>
           </div>
         </div>
         <div class="card w-100 h-100 justify-content-around">
           <h4>Introduce an email to send invitation</h4>
           <p class="mb-0">Send an email to your buddy using our templates.</p>
-          <div class="d-flex">
-            <mat-form-field class="flex-grow-1">
-              <input matInput placeholder="Email" formControlName="sendEmail" />
-            </mat-form-field>
-            <button
-              type="button"
-              [disabled]="!formGroup.get('sendEmail')?.valid"
-              class="btn btn-primary"
-              (click)="sendMailTo()"
-            >
-              Send invitation link
-            </button>
+          <div class="d-flex row">
+            <div class="col-12 col-sm-6 col-lg-9">
+              <mat-form-field class="flex-grow-1">
+                <input
+                  matInput
+                  placeholder="Email"
+                  formControlName="sendEmail"
+                />
+              </mat-form-field>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+              <button
+                type="button"
+                [disabled]="!formGroup.get('sendEmail')?.valid"
+                class="btn btn-primary w-100 h-100"
+                (click)="sendMailTo()"
+              >
+                Send invitation link
+              </button>
+            </div>
           </div>
         </div>
       </div>

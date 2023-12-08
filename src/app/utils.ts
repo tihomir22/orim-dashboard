@@ -19,9 +19,21 @@ export const copyTextToClipboard = (val: string) => {
 };
 
 export const sendEmailTo = (email: string, subject: string, body: string) => {
+  const body2 = `
+<html>
+<head>
+  <title>Correo HTML</title>
+</head>
+<body>
+  <h1>¡Hola!</h1>
+  <p>Este es un correo con formato HTML.</p>
+  <p>Puedes agregar cualquier contenido HTML aquí, como imágenes, enlaces, estilos, etc.</p>
+</body>
+</html>
+`;
   const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(
     subject
-  )}&body=${encodeURIComponent(body)}`;
+  )}&body=${encodeURIComponent(body2)}`;
   window.open(mailtoLink);
 };
 
@@ -74,6 +86,10 @@ export const getImgSrcBasedOnGameName = (gameName: string) => {
     return '/assets/rushforcash.png';
   } else if (gameName == 'Need for Cash - Play to earn') {
     return '/assets/needforcash.png';
+  } else if (gameName == 'Crypto Rush Candy Farm 2022') {
+    return '/assets/bubbleball.png';
+  } else if (gameName == 'Buble Ball Blend & Sort 2023') {
+    return '/assets/cryptorush.png';
   } else if (gameName == 'Crypto Fit - Earn Cash') {
     return '/assets/cryptofit.png';
   }

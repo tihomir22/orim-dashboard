@@ -35,7 +35,7 @@ export class PlatformComponent implements OnInit {
     // },
     {
       path: '/referral',
-      displayText: 'Referral',
+      displayText: 'Refer a friend',
       icon: 'fa-solid fa-people-arrows',
     },
     {

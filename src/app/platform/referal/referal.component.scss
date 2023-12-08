@@ -1,11 +1,16 @@
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins";
+
 .wrapper-referral {
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin: 20px;
+  padding: 10px 0px;
 }
 * {
-  text-align: center;
+  text-align: left;
 }
 
 [class^="col-"] {
@@ -18,6 +23,23 @@
   gap: 10px;
 }
 
-button{
+button {
   width: 160px;
+}
+
+.stats-referral {
+  .row {
+    gap: 10px;
+    @include media-breakpoint-up(sm) {
+      gap: 0px;
+    }
+  }
+}
+
+.referal-code {
+  text-align: center;
+  font-size: 19px;
+}
+button{
+  text-align: center;
 }
