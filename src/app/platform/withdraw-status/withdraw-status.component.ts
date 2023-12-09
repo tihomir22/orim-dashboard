@@ -11,6 +11,7 @@ import {
 import { ColDef, GridReadyEvent, GridApi } from 'ag-grid-community';
 import { MatDialog } from '@angular/material/dialog';
 import { ChangeAddressComponent } from 'src/app/standalone-comps/change-address/change-address.component';
+import { ToastrService } from 'ngx-toastr';
 
 export interface WithdrawRequest {
   game: string;
@@ -51,11 +52,14 @@ export class WithdrawStatusComponent {
   private fb = inject(FormBuilder);
   private datePipe = inject(DatePipe);
   private dialog = inject(MatDialog);
+  private toast = inject(ToastrService);
+  private userLoggedIn = signal(null as unknown as User | null | undefined);
 
   colDefs = [
     {
       field: 'game',
       flex: 1,
+      tooltipField: 'game',
       cellRenderer: (params: { value: string }) => {
         return `
           <img
@@ -166,6 +170,7 @@ export class WithdrawStatusComponent {
     this.authService.user$
       .pipe(filter((entry) => !!entry))
       .subscribe((user) => {
+        this.userLoggedIn.set(user);
         this.formGroup.patchValue({ email: (user as User).email });
         this.getWithdraws();
       });
@@ -192,19 +197,23 @@ export class WithdrawStatusComponent {
   }
 
   openChangeWalletAddressDialog(withdraw: WithdrawRequest): void {
-    const dialogRef = this.dialog.open(ChangeAddressComponent, {
-      width: '400px',
-      data: withdraw,
-    });
+    if (!!this.userLoggedIn() && this.userLoggedIn()?.email == withdraw.email) {
+      const dialogRef = this.dialog.open(ChangeAddressComponent, {
+        width: '400px',
+        data: withdraw,
+      });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (!!result) {
-        withdraw.walletAddress = result;
-        this.userService.updateWithdraw(withdraw).subscribe(() => {
-          this.getWithdraws();
-          this.api.redrawRows();
-        });
-      }
-    });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (!!result) {
+          withdraw.walletAddress = result;
+          this.userService.updateWithdraw(withdraw).subscribe(() => {
+            this.getWithdraws();
+            this.api.redrawRows();
+          });
+        }
+      });
+    } else {
+      this.toast.warning('You can only modify your withdraws');
+    }
   }
 }

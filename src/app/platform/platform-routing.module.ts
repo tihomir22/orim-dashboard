@@ -34,7 +34,6 @@ const routes: Routes = [
       {
         path: 'withdraws-status',
         component: WithdrawStatusComponent,
-        canActivate: [authGuard],
       },
     ],
   },
