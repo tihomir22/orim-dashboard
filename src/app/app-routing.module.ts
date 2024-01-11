@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'REFERRAL_CODE/:id',
     component: LinkerComponent,
   },
+  {
+    path: 'VERIFY_EMAIL/:id',
+    component: LinkerComponent,
+  },
 ];
 
 @NgModule({

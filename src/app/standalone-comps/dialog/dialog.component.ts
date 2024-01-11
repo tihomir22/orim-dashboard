@@ -21,5 +21,7 @@ export class DialogComponent {
   public placeholderInput = signal('');
   public valueInput = '';
   public TYPE_DIALOG = TYPE_DIALOG;
+  public displayFooter = true;
+  public displayCloseButton = true;
   constructor(public activeModal: NgbActiveModal) {}
 }
